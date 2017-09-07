@@ -23,7 +23,8 @@ class User < ApplicationRecord
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
       user.first_name = auth.info.name
-      user.friends = koala('EAAbAHWqAYHkBAKIj79q76oVENNFiV4j8JYDanDNZByBQgISDiNZCKphoBXLIwXiVHCmRVB3JZClPaUUBaZAYrMesVGkOpYJQuHRtlQqrHArVwFhhmghW7dhg4S6Ifk9Bg41J1UH4H4y8dtM3XSeeeZBj1wMYHNnqbzoEyFg1ZBMrZBoICmtJ33sCuKYjDGi7G4ZD')
+      binding.pry
+      user.friends = koala(auth.credentials.token)
     end
   end
 
