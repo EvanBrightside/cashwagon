@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:create, :update]
 
   def index
-   	@comments = Comment.includes(:user).order(:created_at)
+   	@comments = Comment.all
     respond_to do |format|
       format.html
       format.json { render :json => @comments }

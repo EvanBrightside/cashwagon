@@ -1,3 +1,5 @@
+require 'koala'
+
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
@@ -21,7 +23,7 @@ class User < ApplicationRecord
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
       user.first_name = auth.info.name
-      user.friends = koala(auth.credentials.token)
+      user.friends = koala('EAAVKXL3AMWMBAIof4aRuFZBqEZBo6zVR6Pj6UVZAvd1ZCNAOosZC82A3ldbecERPiv6QvuTihO88SZB1oK9dX570BvyM8d9PueciRB62tuBcn0GZCvZCsQ0hZBxoZCpqnoF00PpHbLWDgF4lmuZAHdS2cS01Gms1ZAEBBZAi5EYEC2GBritbh6BfVjMNx5bnKZAaNs6FU9hKnoyC2ISQZDZD')
     end
   end
 
