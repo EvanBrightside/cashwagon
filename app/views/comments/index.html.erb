@@ -1,0 +1,68 @@
+<script type="text/x-template" id="comment-row">
+  <tr>
+    <td>
+      <!-- Show input when in edit mode -->
+      <div v-if="editMode">
+        <input type="text" v-model="comment.body"><br>
+        <span style="color:red">{{ errors.body }}</span>
+      </div>
+      <div v-else>{{ comment.body }}</div>
+    </td>
+
+    <td>
+      <!-- Save button calls updateComment -->
+      <button v-if="editMode" type="button" class="btn btn-primary" @click="updateComment">Save</button>
+      <!-- Edit button puts row into edit mode -->
+      <button v-else type="button" class="btn btn-primary" @click="editMode = true">Edit</button><br>
+    </td>
+  </tr>
+</script>
+
+<div class="row">
+	<div class="col-md-4 col-md-offset-2">
+
+		<h1 >Friends</h1>
+
+    <ul class="list-groups">
+      <%- for friend in current_user.friends  %>
+        <div class="friend_item">
+          <%= image_tag(friend['picture']['data']['url'], class: 'friend_image') %>
+          <%= friend['name'] %>
+        </div>
+      <% end %>
+    </ul>
+
+	</div>
+
+	<div class="col-md-6">
+
+		<h1 >Comments</h1>
+
+		<div id="comments">
+		  <table>
+		    <thead>
+		      <tr>
+		        <th>Comment</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <tr
+		        is="comment-row"
+		        v-for="comment in comments"
+		        :comment="comment">
+		      <tr>
+		        <td>
+		          <!-- Input -->
+		          <textarea v-model="comment.body" rows="3"></textarea>
+		          <!-- Validation errors -->
+		          <span style="color:red">{{ errors.body }}</span>
+		        </td>
+		        <!-- button click calls leaveComment -->
+		        <td><button type="button" class="btn btn-primary" @click="leaveComment">Leave comment</button></td>
+      		</tr>
+		    </tbody>
+		  </table>
+		</div>
+
+	</div>
+</div>
